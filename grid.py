@@ -37,7 +37,46 @@ class Grid:
             elif not cell_under_mouse.alive:
                 cell_under_mouse.alive = True
 
+    def check_neighbours(self):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                cell = self.cells[row][column]
+                alive_neighbours = 0
+
+                for i in [-1, 0, 1]:
+                    for j in [-1, 0, 1]:
+                        if i == 0 and j == 0:
+                            continue
+                        neighbour_row = row + i
+                        neighbouw_col = column + j
+
+                        if (
+                            0 <= neighbour_row < self.rows
+                            and 0 <= neighbouw_col < self.columns
+                        ):
+                            if self.cells[neighbour_row][neighbouw_col].alive:
+                                alive_neighbours += 1
+
+                cell.neighbours = alive_neighbours
+
+    def simulation(self):
+        self.check_neighbours()
+        for row in range(self.rows):
+            for column in range(self.columns):
+                cell = self.cells[row][column]
+                if cell.alive:
+                    if cell.neighbours < 2:
+                        cell.alive = False
+                    elif 2 <= cell.neighbours <= 3:
+                        cell.alive = True
+                    elif cell.neighbours > 3:
+                        cell.alive = False
+                else:
+                    if cell.neighbours == 3:
+                        cell.alive = True
+
 
 class Cell:
     def __init__(self):
         self.alive = False
+        self.neighbours = 0

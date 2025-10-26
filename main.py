@@ -14,10 +14,17 @@ def main():
     grid = Grid(CELL_SIZE)
 
     while running:
+        keys = pygame.key.get_pressed()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             grid.handle_mouse(event)
+
+        if keys[pygame.K_ESCAPE]:
+            running = False
+        elif keys[pygame.K_SPACE]:
+            grid.simulation()
 
         screen.fill("white")
 
