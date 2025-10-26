@@ -23,8 +23,8 @@ class Grid:
 
                 if cell.alive:
                     pygame.draw.rect(screen, CELL_COLOR, rect)
-                else:
-                    pygame.draw.rect(screen, CELL_COLOR, rect, 1)
+                # else:
+                #    pygame.draw.rect(screen, CELL_COLOR, rect, 1)
 
     def handle_mouse(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:

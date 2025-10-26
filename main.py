@@ -19,29 +19,34 @@ def main():
     grid = Grid(CELL_SIZE)
 
     while running:
-        keys = pygame.key.get_pressed()
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
             grid.handle_mouse(event)
+
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                elif event.key == pygame.K_RIGHT:
                     grid.simulation()
                     grid.generation += 1
                 elif event.key == pygame.K_r:
                     grid.randomize()
                     grid.generation = 0
+                elif event.key == pygame.K_SPACE:
+                    grid.sim_running = not grid.sim_running
 
-        if keys[pygame.K_ESCAPE]:
-            running = False
+        if grid.sim_running:
+            grid.simulation()
+            grid.generation += 1
 
         screen.fill("white")
 
         grid.draw(screen)
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(10)
 
     pygame.quit()
 
