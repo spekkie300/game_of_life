@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from constants import CELL_COLOR, SCREEN_HEIGHT, SCREEN_WIDTH
 
@@ -74,6 +75,13 @@ class Grid:
                 else:
                     if cell.neighbours == 3:
                         cell.alive = True
+
+    def randomize(self):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                cell = self.cells[row][column]
+                rand_choice = random.choice([True, False])
+                cell.alive = rand_choice
 
 
 class Cell:

@@ -4,6 +4,11 @@ from constants import CELL_SIZE, SCREEN_WIDTH, SCREEN_HEIGHT
 from grid import Grid
 
 
+# TODO: Add option to change Total grid size
+# TODO: Rate limit simulation
+# TODO: Make spacebar play and arrow to the right run once
+
+
 def main():
     pygame.init()
 
@@ -20,11 +25,16 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             grid.handle_mouse(event)
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    grid.simulation()
+                    grid.generation += 1
+                elif event.key == pygame.K_r:
+                    grid.randomize()
+                    grid.generation = 0
 
         if keys[pygame.K_ESCAPE]:
             running = False
-        elif keys[pygame.K_SPACE]:
-            grid.simulation()
 
         screen.fill("white")
 
