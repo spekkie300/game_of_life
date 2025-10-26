@@ -1,12 +1,11 @@
 import pygame
 
-from constants import CELL_SIZE, SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import CELL_SIZE, FPS, SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR
 from grid import Grid
 
 
 # TODO: Add option to change Total grid size
-# TODO: Rate limit simulation
-# TODO: Make spacebar play and arrow to the right run once
+# TODO: Add config file
 
 
 def main():
@@ -41,12 +40,12 @@ def main():
             grid.simulation()
             grid.generation += 1
 
-        screen.fill("white")
+        screen.fill(BG_COLOR)
 
         grid.draw(screen)
 
         pygame.display.flip()
-        clock.tick(10)
+        clock.tick(FPS)
 
     pygame.quit()
 

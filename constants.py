@@ -1,6 +1,7 @@
 SCREEN_HEIGHT = 800
 SCREEN_WIDTH = 800
 CELL_SIZE = 20
+FPS = 10
 
-CELL_COLOR = "black"
-BG_COLOR = "white"
+CELL_COLOR = "blue"
+BG_COLOR = "black"
